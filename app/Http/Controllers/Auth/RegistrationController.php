@@ -22,7 +22,7 @@ class RegistrationController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:3|max:20',
+            'password' => 'required|confirmed|min:3|max:20', //password_confirmation 4th param req. from frontend
         ]);
 
         if($validator->fails()){
