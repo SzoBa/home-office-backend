@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'guest'], function () {
+    Route::post('registration/simple', 'Auth\RegistrationController@register');
     Route::post('/login', 'Auth\LoginController@login');
 });
 
