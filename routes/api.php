@@ -30,4 +30,5 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('/logout', 'Auth\LogoutController@logout');
+    Route::apiResource('/mail', 'EmailController');
 });
