@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\SocialData;
+use App\Models\User;
 use Socialite;
 
 class GoogleController extends Controller
@@ -18,25 +19,33 @@ class GoogleController extends Controller
     public function loginCallback()
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
-
-        /**
         $user = null;
 
-        DB::transaction(function () use ($googleUser, &$user) {
-            $socialAccount = SocialAccount::firstOrNew(
-                ['social_id' => $googleUser->getId(), 'social_provider' => 'google'],
-                ['social_name' => $googleUser->getName()]
-            );
+        \DB::transaction(function () use ($googleUser, &$user) {
 
-            if (!($user = $socialAccount->user)) {
-                $user = User::create([
-                    'email' => $googleUser->getEmail(),
-                    'name' => $googleUser->getName(),
-                ]);
-                $socialAccount->fill(['user_id' => $user->id])->save();
+            $socialData = SocialData::where(
+                ['social_id' => $googleUser->getId(), 'social_type' => 'google']
+            )->first();
+
+            if (!isset($socialData)) {
+                $user = User::firstOrCreate(
+                    ['email' => $googleUser->getEmail(), 'name' => $googleUser->getName()]
+                );
+
+                SocialData::create(
+                    ['user_id' => $user->id, 'social_id' => $googleUser->getId(),
+                        'social_type' => 'google', 'social_name' => $googleUser->getName()]
+                );
+            } else {
+                $user = $socialData->user;
             }
         });
-        */
-        return response( json_encode($googleUser, JSON_THROW_ON_ERROR),200);
+
+        if (is_null($user)) {
+            return response(['message' => "Database error!"], 500);
+        }
+
+        $token = $user->createToken("HomeOfficeFull");
+        return response(['token' => $token->plainTextToken, 'username' => $user->name], 200);
     }
 }
