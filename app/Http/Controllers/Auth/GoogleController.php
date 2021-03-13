@@ -29,7 +29,8 @@ class GoogleController extends Controller
 
             if (!isset($socialData)) {
                 $user = User::firstOrCreate(
-                    ['email' => $googleUser->getEmail(), 'name' => $googleUser->getName()]
+                    ['email' => $googleUser->getEmail()],
+                    ['name' => $googleUser->getName()]
                 );
 
                 SocialData::create(
