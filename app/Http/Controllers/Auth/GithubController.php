@@ -30,12 +30,12 @@ class GithubController extends Controller
             if (!isset($socialData)) {
                 $user = User::firstOrCreate(
                     ['email' => $githubUser->getEmail()],
-                    ['name' => $githubUser->getName()]
+                    ['name' => $githubUser->nickname]
                 );
 
                 SocialData::create(
                     ['user_id' => $user->id, 'social_id' => $githubUser->getId(),
-                        'social_type' => 'github', 'social_name' => $githubUser->getName()]
+                        'social_type' => 'github', 'social_name' => $githubUser->nickname]
                 );
             } else {
                 $user = $socialData->user;
