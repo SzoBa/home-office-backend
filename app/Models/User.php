@@ -71,7 +71,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function SocialData(): HasMany
+    public function socialData(): HasMany
     {
         return $this->hasMany(SocialData::class, 'user_id', 'id');
     }
