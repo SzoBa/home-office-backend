@@ -33,13 +33,16 @@ class GoogleController extends Controller
                     ['name' => $googleUser->getName()]
                 );
 
-                SocialData::create(
+                $socialData = SocialData::create(
                     ['user_id' => $user->id, 'social_id' => $googleUser->getId(),
                         'social_type' => 'google', 'social_name' => $googleUser->getName()]
                 );
             } else {
                 $user = $socialData->user;
             }
+
+            /** current access token "refresh implementation" */
+            $socialData->update(['access_token' => $googleUser->token]);
         });
 
         if (is_null($user)) {
