@@ -38,6 +38,7 @@ class SocialData extends Model
         'social_id',
         'social_name',
         'social_type',
+        'access_token',
     ];
 
 
