@@ -19,6 +19,7 @@ class CreateSocialDataTable extends Migration
             $table->string('social_id');
             $table->string('social_name');
             $table->string('social_type');
+            $table->string('access_token')->nullable();
             $table->timestamps();
         });
     }
