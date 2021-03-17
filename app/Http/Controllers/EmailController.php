@@ -116,7 +116,7 @@ class EmailController extends Controller
         );
         $data = curl_exec($handle);
         curl_close($handle);
-        return json_decode($data, true, 512, JSON_THROW_ON_ERROR);
+        return response($data, 200);
     }
 
     public function  mailOptionsWithId(Request $request, $id) {
