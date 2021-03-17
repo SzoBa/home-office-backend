@@ -17,7 +17,7 @@ class EmailController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $socialData = $user->socialData[0]; //multiple social data to one user!!!!
+        $socialData = $user->socialData->where('social_type', 'google')->first();
         $handle = curl_init();
         $url = "https://www.googleapis.com/gmail/v1/users/{$socialData->social_id}/messages";
         $headers = ['Accept: application/json', 'Content-Type: application/json',
@@ -56,7 +56,7 @@ class EmailController extends Controller
     public function show(Request $request, int $id): Response
     {
         $user = $request->user();
-        $socialData = $user->socialData[0]; //multiple social data to one user!!!!
+        $socialData = $user->socialData->where('social_type', 'google')->first();
         $handle = curl_init();
         $url = "https://www.googleapis.com/gmail/v1/users/{$socialData->social_id}/messages/{$id}";
         $headers = ['Accept: application/json', 'Content-Type: application/json',
@@ -100,7 +100,7 @@ class EmailController extends Controller
     public function mailOptions(Request $request)
     {
         $user = $request->user();
-        $socialData = $user->socialData[0]; //multiple social data to one user!!!!
+        $socialData = $user->socialData->where('social_type', 'google')->first();
         $queryParams = $request->input('q');
         $handle = curl_init();
         $baseUrl = "https://www.googleapis.com/gmail/v1/users/{$socialData->social_id}/messages";
