@@ -95,4 +95,31 @@ class EmailController extends Controller
     {
         //
     }
+
+
+    public function mailOptions(Request $request)
+    {
+        $user = $request->user();
+        $socialData = $user->socialData[0]; //multiple social data to one user!!!!
+        $queryParams = $request->input('q');
+        $handle = curl_init();
+        $baseUrl = "https://www.googleapis.com/gmail/v1/users/{$socialData->social_id}/messages";
+        $url = $queryParams ? $baseUrl . "?q=" . str_replace(" ", "+", $queryParams) : $baseUrl;
+        $headers = ['Accept: application/json', 'Content-Type: application/json',
+            "Authorization: Bearer {$socialData->access_token}",
+        ];
+        curl_setopt_array($handle, [
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_HTTPHEADER => $headers,
+            ]
+        );
+        $data = curl_exec($handle);
+        curl_close($handle);
+        return json_decode($data, true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    public function  mailOptionsWithId(Request $request, $id) {
+        return response("hali, i am not implemented yet!", 200);
+    }
 }
