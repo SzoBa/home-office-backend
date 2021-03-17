@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', 'InfoController@index');
     Route::get('auth/google-redirect', 'Auth\GoogleController@loginUrl');
     Route::get('auth/google-callback', 'Auth\GoogleController@loginCallback');
     Route::get('auth/github-redirect', 'Auth\GithubController@loginUrl');
