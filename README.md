@@ -24,7 +24,6 @@ Google authorization (login) is mandatory for using the GMail API (e-mails modul
 Google specific query parameters for filtering, provided as values with parameter key "q":
 Example: http://homeoffice.com/api/mail/options?q=is:unread+in:inbox
 - Mails with options: http://homeoffice.com/api/mail/options
-- Mail with options: http://homeoffice.com/api/mail/options/{gmail_id}
 ##### Registration/login:
 - Registration with username + password: http://homeoffice.com/api/registration/simple
 - Registration with Github/Goggle (via Oauth)

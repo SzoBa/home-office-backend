@@ -119,7 +119,4 @@ class EmailController extends Controller
         return response($data, 200);
     }
 
-    public function  mailOptionsWithId(Request $request, $id) {
-        return response("hali, i am not implemented yet!", 200);
-    }
 }
