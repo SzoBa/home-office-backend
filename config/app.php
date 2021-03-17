@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'readme' => env('README_FILE'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
