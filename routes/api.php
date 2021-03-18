@@ -14,6 +14,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('auth/github-callback', 'Auth\GithubController@loginCallback');
     Route::post('registration/simple', 'Auth\RegistrationController@register');
     Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/local_weather', 'WeatherController@getWeather');
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
