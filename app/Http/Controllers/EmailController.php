@@ -116,6 +116,13 @@ class EmailController extends Controller
         );
         $data = curl_exec($handle);
         curl_close($handle);
+        $jsonData = json_decode($data, false,512,JSON_THROW_ON_ERROR);
+        if (isset($jsonData->error)) {
+            if ($jsonData->error->status === "UNAUTHENTICATED") {
+                return \response("Login with Google to access mails!", 422);
+            }
+            return \response($jsonData->error->message, 400);
+        }
         return response($data, 200);
     }
 
