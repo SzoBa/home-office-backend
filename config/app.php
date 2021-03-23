@@ -15,6 +15,10 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'readme' => env('README_FILE'),
+    'weatherUrl' => env('OPENWEATHER_URL'),
+    'gmailReadOnly' => env('GMAIL_READ_ONLY_URL'),
+    'gmailApiUrl' => env('GMAIL_API_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

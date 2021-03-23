@@ -13,9 +13,10 @@ class WeatherController extends Controller
         $latitude = $request->input("latitude", 47.497913);
         $longitude = $request->input("longitude", 19.040236);
         $weatherApiKey = env('OPENWEATHER_APIKEY');
+        $weatherUrl = config('app.weatherUrl');
 
         $handle = curl_init();
-        $url = "http://api.openweathermap.org/data/2.5/weather?lat={$latitude}&lon={$longitude}&appid={$weatherApiKey}&units=metric";
+        $url = $weatherUrl . "?lat={$latitude}&lon={$longitude}&appid={$weatherApiKey}&units=metric";
         $headers = ['Accept: application/json', 'Content-Type: application/json'];
         curl_setopt_array($handle, [
                 CURLOPT_URL => $url,

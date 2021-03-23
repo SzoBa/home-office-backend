@@ -11,7 +11,7 @@ class GoogleController extends Controller
 {
     public function loginUrl()
     {
-        $scopes = ['https://www.googleapis.com/auth/gmail.readonly'];
+        $scopes = [config('app.gmailReadOnly')];
         return response([
             'url' => Socialite::driver('google')
                 ->scopes($scopes)->stateless()->redirect()->getTargetUrl(),

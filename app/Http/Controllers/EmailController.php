@@ -19,7 +19,7 @@ class EmailController extends Controller
         $user = $request->user();
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $handle = curl_init();
-        $url = "https://www.googleapis.com/gmail/v1/users/{$socialData->social_id}/messages";
+        $url = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages";
         $headers = ['Accept: application/json', 'Content-Type: application/json',
             "Authorization: Bearer {$socialData->access_token}",
                     ];
@@ -58,7 +58,7 @@ class EmailController extends Controller
         $user = $request->user();
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $handle = curl_init();
-        $url = "https://www.googleapis.com/gmail/v1/users/{$socialData->social_id}/messages/{$id}";
+        $url = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages/{$id}";
         $headers = ['Accept: application/json', 'Content-Type: application/json',
             "Authorization: Bearer {$socialData->access_token}",
         ];
@@ -103,7 +103,7 @@ class EmailController extends Controller
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $queryParams = $request->input('q');
         $handle = curl_init();
-        $baseUrl = "https://www.googleapis.com/gmail/v1/users/{$socialData->social_id}/messages";
+        $baseUrl = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages";
         $url = $queryParams ? $baseUrl . "?q=" . str_replace(" ", "+", $queryParams) : $baseUrl;
         $headers = ['Accept: application/json', 'Content-Type: application/json',
             "Authorization: Bearer {$socialData->access_token}",
