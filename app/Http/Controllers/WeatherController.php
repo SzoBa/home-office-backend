@@ -15,7 +15,7 @@ class WeatherController extends Controller
         $weatherApiKey = env('OPENWEATHER_APIKEY');
 
         $handle = curl_init();
-        $url = "http://api.openweathermap.org/data/2.5/weather?lat={$latitude}&lon={$longitude}&appid={$weatherApiKey}";
+        $url = "http://api.openweathermap.org/data/2.5/weather?lat={$latitude}&lon={$longitude}&appid={$weatherApiKey}&units=metric";
         $headers = ['Accept: application/json', 'Content-Type: application/json'];
         curl_setopt_array($handle, [
                 CURLOPT_URL => $url,
