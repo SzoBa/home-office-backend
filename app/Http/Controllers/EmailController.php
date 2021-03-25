@@ -53,7 +53,7 @@ class EmailController extends Controller
      * @return Response
      * @throws \JsonException
      */
-    public function show(Request $request, int $id): Response
+    public function show(Request $request, string $id): Response
     {
         $user = $request->user();
         $socialData = $user->socialData->where('social_type', 'google')->first();
