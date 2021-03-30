@@ -16,7 +16,8 @@ class LogoutController extends Controller
      * @param Request $request
      * @return Application|ResponseFactory|Response
      */
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $request->user()->currentAccessToken()->delete(); //delete the current token
 //        $request->user()->tokens()->delete(); delete all tokens from user
         return response(["message" => "Logout successful"], 204);

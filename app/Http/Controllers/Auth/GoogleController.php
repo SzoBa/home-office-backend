@@ -12,10 +12,12 @@ class GoogleController extends Controller
     public function loginUrl()
     {
         $scopes = [config('app.gmailReadOnly')];
-        return response([
-            'url' => Socialite::driver('google')
-                ->scopes($scopes)->stateless()->redirect()->getTargetUrl(),
-        ]);
+        return response(
+            [
+                'url' => Socialite::driver('google')
+                    ->scopes($scopes)->stateless()->redirect()->getTargetUrl(),
+            ]
+        );
     }
 
     public function loginCallback()
@@ -23,29 +25,34 @@ class GoogleController extends Controller
         $googleUser = Socialite::driver('google')->stateless()->user();
         $user = null;
 
-        \DB::transaction(function () use ($googleUser, &$user) {
+        \DB::transaction(
+            function () use ($googleUser, &$user) {
+                $socialData = SocialData::where(
+                    ['social_id' => $googleUser->getId(), 'social_type' => 'google']
+                )->first();
 
-            $socialData = SocialData::where(
-                ['social_id' => $googleUser->getId(), 'social_type' => 'google']
-            )->first();
+                if (!isset($socialData)) {
+                    $user = User::firstOrCreate(
+                        ['email' => $googleUser->getEmail()],
+                        ['name' => $googleUser->getName()]
+                    );
 
-            if (!isset($socialData)) {
-                $user = User::firstOrCreate(
-                    ['email' => $googleUser->getEmail()],
-                    ['name' => $googleUser->getName()]
-                );
+                    $socialData = SocialData::create(
+                        [
+                            'user_id' => $user->id,
+                            'social_id' => $googleUser->getId(),
+                            'social_type' => 'google',
+                            'social_name' => $googleUser->getName()
+                        ]
+                    );
+                } else {
+                    $user = $socialData->user;
+                }
 
-                $socialData = SocialData::create(
-                    ['user_id' => $user->id, 'social_id' => $googleUser->getId(),
-                        'social_type' => 'google', 'social_name' => $googleUser->getName()]
-                );
-            } else {
-                $user = $socialData->user;
+                /** current access token "refresh implementation" */
+                $socialData->update(['access_token' => $googleUser->token]);
             }
-
-            /** current access token "refresh implementation" */
-            $socialData->update(['access_token' => $googleUser->token]);
-        });
+        );
 
         if (is_null($user)) {
             return response(['message' => "Database error!"], 500);

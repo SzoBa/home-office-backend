@@ -18,7 +18,9 @@ class WeatherController extends Controller
         $handle = curl_init();
         $url = $weatherUrl . "?lat={$latitude}&lon={$longitude}&appid={$weatherApiKey}&units=metric";
         $headers = ['Accept: application/json', 'Content-Type: application/json'];
-        curl_setopt_array($handle, [
+        curl_setopt_array(
+            $handle,
+            [
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_HTTPHEADER => $headers,

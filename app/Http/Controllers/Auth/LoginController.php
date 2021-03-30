@@ -20,7 +20,8 @@ class LoginController extends Controller
      * @param Request $request
      * @return Application|ResponseFactory|Response
      */
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $rules = [
             'email' => 'required|string|email|max:255|exists:users,email',
             'password' => 'required|string|min:3',
@@ -30,7 +31,7 @@ class LoginController extends Controller
             return response($validation->errors(), 422);
         }
         $credentials = $request->only(['email', 'password']);
-        if(auth()->attempt($credentials)) {
+        if (auth()->attempt($credentials)) {
             $token = $request->user()->createToken("HomeOfficeFull");
             return response(['token' => $token->plainTextToken, 'username' => $request->user()->name], 201);
         }

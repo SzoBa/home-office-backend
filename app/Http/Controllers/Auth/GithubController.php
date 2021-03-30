@@ -11,9 +11,11 @@ class GithubController extends Controller
 {
     public function loginUrl()
     {
-        return response([
-            'url' => Socialite::driver('github')->stateless()->redirect()->getTargetUrl(),
-        ]);
+        return response(
+            [
+                'url' => Socialite::driver('github')->stateless()->redirect()->getTargetUrl(),
+            ]
+        );
     }
 
     public function loginCallback()
@@ -21,26 +23,31 @@ class GithubController extends Controller
         $githubUser = Socialite::driver('github')->stateless()->user();
         $user = null;
 
-        \DB::transaction(function () use ($githubUser, &$user) {
+        \DB::transaction(
+            function () use ($githubUser, &$user) {
+                $socialData = SocialData::where(
+                    ['social_id' => $githubUser->getId(), 'social_type' => 'github']
+                )->first();
 
-            $socialData = SocialData::where(
-                ['social_id' => $githubUser->getId(), 'social_type' => 'github']
-            )->first();
+                if (!isset($socialData)) {
+                    $user = User::firstOrCreate(
+                        ['email' => $githubUser->getEmail()],
+                        ['name' => $githubUser->nickname]
+                    );
 
-            if (!isset($socialData)) {
-                $user = User::firstOrCreate(
-                    ['email' => $githubUser->getEmail()],
-                    ['name' => $githubUser->nickname]
-                );
-
-                SocialData::create(
-                    ['user_id' => $user->id, 'social_id' => $githubUser->getId(),
-                        'social_type' => 'github', 'social_name' => $githubUser->nickname]
-                );
-            } else {
-                $user = $socialData->user;
+                    SocialData::create(
+                        [
+                            'user_id' => $user->id,
+                            'social_id' => $githubUser->getId(),
+                            'social_type' => 'github',
+                            'social_name' => $githubUser->nickname
+                        ]
+                    );
+                } else {
+                    $user = $socialData->user;
+                }
             }
-        });
+        );
 
         if (is_null($user)) {
             return response(['message' => "Database error!"], 500);

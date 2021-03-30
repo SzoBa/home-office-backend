@@ -20,10 +20,14 @@ class EmailController extends Controller
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $handle = curl_init();
         $url = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages";
-        $headers = ['Accept: application/json', 'Content-Type: application/json',
+        $headers = [
+            'Accept: application/json',
+            'Content-Type: application/json',
             "Authorization: Bearer {$socialData->access_token}",
-                    ];
-        curl_setopt_array($handle, [
+        ];
+        curl_setopt_array(
+            $handle,
+            [
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_HTTPHEADER => $headers,
@@ -37,7 +41,7 @@ class EmailController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -59,10 +63,14 @@ class EmailController extends Controller
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $handle = curl_init();
         $url = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages/{$id}";
-        $headers = ['Accept: application/json', 'Content-Type: application/json',
+        $headers = [
+            'Accept: application/json',
+            'Content-Type: application/json',
             "Authorization: Bearer {$socialData->access_token}",
         ];
-        curl_setopt_array($handle, [
+        curl_setopt_array(
+            $handle,
+            [
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_HTTPHEADER => $headers,
@@ -76,8 +84,8 @@ class EmailController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -88,7 +96,7 @@ class EmailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
@@ -105,10 +113,14 @@ class EmailController extends Controller
         $handle = curl_init();
         $baseUrl = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages";
         $url = $queryParams ? $baseUrl . "?q=" . str_replace(" ", "+", $queryParams) : $baseUrl;
-        $headers = ['Accept: application/json', 'Content-Type: application/json',
+        $headers = [
+            'Accept: application/json',
+            'Content-Type: application/json',
             "Authorization: Bearer {$socialData->access_token}",
         ];
-        curl_setopt_array($handle, [
+        curl_setopt_array(
+            $handle,
+            [
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_HTTPHEADER => $headers,
@@ -116,7 +128,7 @@ class EmailController extends Controller
         );
         $data = curl_exec($handle);
         curl_close($handle);
-        $jsonData = json_decode($data, false,512,JSON_THROW_ON_ERROR);
+        $jsonData = json_decode($data, false, 512, JSON_THROW_ON_ERROR);
         if (isset($jsonData->error)) {
             if ($jsonData->error->status === "UNAUTHENTICATED") {
                 return \response("Login with Google to access mails!", 422);
