@@ -36,6 +36,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SocialData[] $weatherData
  * @property-read int|null $weather_data_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SocialData[] $socialData
+ * @property-read int|null $social_data_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read int|null $tokens_count
  */
 class User extends Authenticatable
 {

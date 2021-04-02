@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\SocialData;
 use App\Models\User;
+use Carbon\Carbon;
 use Socialite;
 
 class GoogleController extends Controller
@@ -12,10 +13,12 @@ class GoogleController extends Controller
     public function loginUrl()
     {
         $scopes = [config('app.gmailReadOnly')];
+        $parameters = ['access_type' => config('app.accessType'),
+            'prompt' => 'select_account'];
         return response(
             [
                 'url' => Socialite::driver('google')
-                    ->scopes($scopes)->stateless()->redirect()->getTargetUrl(),
+                    ->scopes($scopes)->with($parameters)->stateless()->redirect()->getTargetUrl(),
             ]
         );
     }
@@ -24,7 +27,6 @@ class GoogleController extends Controller
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
         $user = null;
-
         \DB::transaction(
             function () use ($googleUser, &$user) {
                 $socialData = SocialData::where(
@@ -42,15 +44,18 @@ class GoogleController extends Controller
                             'user_id' => $user->id,
                             'social_id' => $googleUser->getId(),
                             'social_type' => 'google',
-                            'social_name' => $googleUser->getName()
+                            'social_name' => $googleUser->getName(),
+                            'refresh_token' => $googleUser->refreshToken,
                         ]
                     );
                 } else {
                     $user = $socialData->user;
                 }
-
-                /** current access token "refresh implementation" */
-                $socialData->update(['access_token' => $googleUser->token]);
+                $currentTime = Carbon::now();
+                $expirationTime = Carbon::createFromTimestamp($currentTime->timestamp + $googleUser->expiresIn);
+                $socialData->update([
+                    'access_token' => $googleUser->token,
+                    'expires_at' => $expirationTime]);
             }
         );
 
