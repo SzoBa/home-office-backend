@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,7 +28,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|SocialData whereSocialType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SocialData whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SocialData whereUserId($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
+ * @property string|null $access_token
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialData whereAccessToken($value)
  */
 class SocialData extends Model
 {
@@ -39,6 +42,8 @@ class SocialData extends Model
         'social_name',
         'social_type',
         'access_token',
+        'expires_at',
+        'refresh_token',
     ];
 
 
