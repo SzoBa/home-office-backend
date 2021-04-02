@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\BatchFetchTrait;
+use App\Http\Traits\RefreshGoggleToken;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-use function React\Promise\map;
 
 class EmailOptionController extends Controller
 {
-    use BatchFetchTrait;
+    use BatchFetchTrait, RefreshGoggleToken;
 
     /**
      * Display a listing of the resource.
@@ -22,6 +22,7 @@ class EmailOptionController extends Controller
     public function index(Request $request): Response
     {
         $user = $request->user();
+        $test = $this->checkTokenIsExpired($user);
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $queryParams = $request->input('q');
         $handle = curl_init();
