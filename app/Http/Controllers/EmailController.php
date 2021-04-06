@@ -46,7 +46,7 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return \response('email sent!:D', 201);
     }
 
     /**
