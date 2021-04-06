@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class EmailController extends Controller
 {
@@ -44,21 +45,28 @@ class EmailController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
-        //
+        $rules = ['name' =>'required',
+            'subject' => 'required|min:3', 'message' => 'required|min:3'];
+        $validation = Validator::make($request->all(), $rules);
+        if ($validation->fails()) {
+            return response($validation->errors(), 400);
+        }
+        //TODO here comes the GMAIL apiClient stuff
+        return response('email sent!:D', 201);
     }
 
     /**
      * Display the specified resource.
      *
      * @param Request $request
-     * @param int $id
+     * @param string $id
      * @return Response
-     * @throws \JsonException
      */
     public function show(Request $request, string $id): Response
     {
+        //TODO change this for GMAIL apiClient stuff get email object functionality
         $user = $request->user();
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $handle = curl_init();
