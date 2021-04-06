@@ -2,8 +2,6 @@
 
 namespace App\Http\Traits;
 
-
-use App\Models\SocialData;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -24,14 +22,16 @@ trait RefreshGoggleToken {
         ];
         $clientId = env('GOOGLE_CLIENT_ID');
         $clientSecret = env('GOOGLE_CLIENT_SECRET');
-        $refreshToken = $user->socialData()->get('refresh_token');
-        $postData = [
-            "client_id: {$clientId}",
-            "client_secret: {$clientSecret}",
-            "refresh_token: {$refreshToken}",
-            "grant_type: refresh_token",
-
-        ];
+        $refreshToken = $user->socialData()->where('social_type', '=', 'google')->value('refresh_token');
+        $postData = json_encode(
+            [
+                "client_id" => $clientId,
+                "client_secret" => $clientSecret,
+                "refresh_token" => $refreshToken,
+                "grant_type" => "refresh_token",
+            ],
+            JSON_THROW_ON_ERROR
+        );
             $handle = curl_init();
             curl_setopt_array(
                 $handle,
@@ -45,6 +45,12 @@ trait RefreshGoggleToken {
             );
             $data = curl_exec($handle);
             curl_close($handle);
-        return $data['access_token'];
+        $data = json_decode($data, true, 512, JSON_THROW_ON_ERROR);
+        $currentTime = Carbon::now();
+        $expirationTime = Carbon::createFromTimestamp($currentTime->timestamp + $data["expires_in"]);
+        $socialData = $user->socialData()->where('social_type', '=', 'google');
+        $socialData->update([
+                                'access_token' => $data["access_token"],
+                                'expires_at' => $expirationTime]);
     }
 }

@@ -15,7 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'readme' => env('README_FILE'),
-    'weatherUrl' => env('OPENWEATHER_URL'),
+    'weatherUrl' => env('OPENWEATHER_ACTUAL_URL'),
+    'forecastUrl' => env('OPENWEATHER_FORECAST_URL'),
     'googleTokenRefresh' => env('GOOGLE_TOKEN_REFRESH'),
     'gmailReadOnly' => env('GMAIL_READ_ONLY_URL'),
     'gmailApiUrl' => env('GMAIL_API_URL'),
@@ -171,7 +172,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Application Service Providers...
          */

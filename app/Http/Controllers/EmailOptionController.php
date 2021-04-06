@@ -23,6 +23,9 @@ class EmailOptionController extends Controller
     {
         $user = $request->user();
         $test = $this->checkTokenIsExpired($user);
+        if (!$test) {
+            $this->refreshToken($user);
+        }
         $socialData = $user->socialData->where('social_type', 'google')->first();
         $queryParams = $request->input('q');
         $handle = curl_init();
