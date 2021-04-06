@@ -19,7 +19,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('/logout', 'Auth\LogoutController@logout');
-    Route::apiResource('/mail-options', 'EmailOptionController');
+    Route::apiResource('/mail-options', 'EmailOptionController')->except(['store', 'show', 'update', 'destroy']);
     Route::apiResource('/mail', 'EmailController');
 });
 
