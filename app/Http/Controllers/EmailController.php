@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Dacastro4\LaravelGmail\Services\Message\Mail;
+
 
 class EmailController extends Controller
 {
@@ -47,14 +49,21 @@ class EmailController extends Controller
      */
     public function store(Request $request): Response
     {
-        $rules = ['name' =>'required',
+        $rules = ['address' =>'required',
             'subject' => 'required|min:3', 'message' => 'required|min:3'];
         $validation = Validator::make($request->all(), $rules);
         if ($validation->fails()) {
             return response($validation->errors(), 400);
         }
-        //TODO here comes the GMAIL apiClient stuff
-        return response('email sent!:D', 201);
+        $mail = new Mail();
+        $mail->setToken($request->user()->socialData()->where('social_type', 'google')->value('access_token'));
+        $mail->to($request->get('address'));
+        $mail->from($request->user()->email);
+        $mail->subject($request->get('subject'));
+        $mail->message($request->get('message'));
+        $mail->send();
+        //TODO: handle cc, bcc
+        return response("Mail sent", 201);
     }
 
     /**
