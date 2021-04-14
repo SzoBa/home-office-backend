@@ -19,6 +19,8 @@ return [
     'forecastUrl' => env('OPENWEATHER_FORECAST_URL'),
     'googleTokenRefresh' => env('GOOGLE_TOKEN_REFRESH'),
     'gmailReadOnly' => env('GMAIL_READ_ONLY_URL'),
+    'gmailLabel' => env('GMAIL_LABEL_URL'),
+    'gmailSend' => env('GMAIL_SEND_URL'),
     'gmailApiUrl' => env('GMAIL_API_URL'),
     'accessType' => env('GMAIL_ACCESS_TYPE'),
 
