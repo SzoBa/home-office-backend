@@ -15478,6 +15478,952 @@
      
 }
 
+    namespace Dacastro4\LaravelGmail\Facade { 
+            /**
+     * 
+     *
+     */ 
+        class LaravelGmail {
+                    /**
+         * 
+         *
+         * @return \Dacastro4\LaravelGmail\Services\Message 
+         * @throws AuthException
+         * @static 
+         */ 
+        public static function message()
+        {
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->message();
+        }
+                    /**
+         * Returns the Gmail user email
+         *
+         * @return \Google_Service_Gmail_Profile 
+         * @static 
+         */ 
+        public static function user()
+        {
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->user();
+        }
+                    /**
+         * Updates / sets the current userId for the service
+         *
+         * @return \Google_Service_Gmail_Profile 
+         * @static 
+         */ 
+        public static function setUserId($userId)
+        {
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setUserId($userId);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function redirect()
+        {
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->redirect();
+        }
+                    /**
+         * Gets the URL to authorize the user
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAuthUrl()
+        {
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getAuthUrl();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function logout()
+        {
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->logout();
+        }
+                    /**
+         * Check and return true if the user has previously logged in without checking if the token needs to refresh
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkPreviouslyLoggedIn()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->checkPreviouslyLoggedIn();
+        }
+                    /**
+         * Check if token exists and is expired
+         * Throws an AuthException when the auth file its empty or with the wrong token
+         *
+         * @return bool Returns True if the access_token is expired.
+         * @static 
+         */ 
+        public static function isAccessTokenExpired()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->isAccessTokenExpired();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getToken()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getToken();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setToken($token)
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setToken($token);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAccessToken()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getAccessToken();
+        }
+                    /**
+         * 
+         *
+         * @param array|string $token
+         * @static 
+         */ 
+        public static function setAccessToken($token)
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setAccessToken($token);
+        }
+                    /**
+         * 
+         *
+         * @param $token
+         * @static 
+         */ 
+        public static function setBothAccessToken($token)
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setBothAccessToken($token);
+        }
+                    /**
+         * Save the credentials in a file
+         *
+         * @param array $config
+         * @static 
+         */ 
+        public static function saveAccessToken($config)
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->saveAccessToken($config);
+        }
+                    /**
+         * 
+         *
+         * @return array|string 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function makeToken()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->makeToken();
+        }
+                    /**
+         * Check
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function check()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->check();
+        }
+                    /**
+         * Gets user profile from Gmail
+         *
+         * @return \Google_Service_Gmail_Profile 
+         * @static 
+         */ 
+        public static function getProfile()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getProfile();
+        }
+                    /**
+         * Delete the credentials in a file
+         *
+         * @static 
+         */ 
+        public static function deleteAccessToken()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->deleteAccessToken();
+        }
+                    /**
+         * Get a string containing the version of the library.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getLibraryVersion()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getLibraryVersion();
+        }
+                    /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithAuthCode
+         *
+         * @param $code string code from accounts.google.com
+         * @return array access token
+         * @deprecated 
+         * @static 
+         */ 
+        public static function authenticate($code)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->authenticate($code);
+        }
+                    /**
+         * Attempt to exchange a code for an valid authentication token.
+         * 
+         * Helper wrapped around the OAuth 2.0 implementation.
+         *
+         * @param $code string code from accounts.google.com
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithAuthCode($code)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->fetchAccessTokenWithAuthCode($code);
+        }
+                    /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithAssertion
+         *
+         * @return array access token
+         * @deprecated 
+         * @static 
+         */ 
+        public static function refreshTokenWithAssertion()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->refreshTokenWithAssertion();
+        }
+                    /**
+         * Fetches a fresh access token with a given assertion token.
+         *
+         * @param \Google\ClientInterface $authHttp optional.
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithAssertion($authHttp = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->fetchAccessTokenWithAssertion($authHttp);
+        }
+                    /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithRefreshToken
+         *
+         * @param string $refreshToken
+         * @return array access token
+         * @static 
+         */ 
+        public static function refreshToken($refreshToken)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->refreshToken($refreshToken);
+        }
+                    /**
+         * Fetches a fresh OAuth 2.0 access token with the given refresh token.
+         *
+         * @param string $refreshToken
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithRefreshToken($refreshToken = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->fetchAccessTokenWithRefreshToken($refreshToken);
+        }
+                    /**
+         * Create a URL to obtain user authorization.
+         * 
+         * The authorization endpoint allows the user to first
+         * authenticate, and then grant/deny the access request.
+         *
+         * @param string|array $scope The scope is expressed as an array or list of space-delimited strings.
+         * @return string 
+         * @static 
+         */ 
+        public static function createAuthUrl($scope = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->createAuthUrl($scope);
+        }
+                    /**
+         * Adds auth listeners to the HTTP client based on the credentials
+         * set in the Google API Client object
+         *
+         * @param \Google\ClientInterface $http the http client object.
+         * @return \Google\ClientInterface the http client object
+         * @static 
+         */ 
+        public static function authorize($http = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->authorize($http);
+        }
+                    /**
+         * Set the configuration to use application default credentials for
+         * authentication
+         *
+         * @see https://developers.google.com/identity/protocols/application-default-credentials
+         * @param boolean $useAppCreds
+         * @static 
+         */ 
+        public static function useApplicationDefaultCredentials($useAppCreds = true)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->useApplicationDefaultCredentials($useAppCreds);
+        }
+                    /**
+         * To prevent useApplicationDefaultCredentials from inappropriately being
+         * called in a conditional
+         *
+         * @see https://developers.google.com/identity/protocols/application-default-credentials
+         * @static 
+         */ 
+        public static function isUsingApplicationDefaultCredentials()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->isUsingApplicationDefaultCredentials();
+        }
+                    /**
+         * 
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getRefreshToken()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getRefreshToken();
+        }
+                    /**
+         * 
+         *
+         * @deprecated See UPGRADING.md for more information
+         * @static 
+         */ 
+        public static function getAuth()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getAuth();
+        }
+                    /**
+         * 
+         *
+         * @deprecated See UPGRADING.md for more information
+         * @static 
+         */ 
+        public static function setAuth($auth)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setAuth($auth);
+        }
+                    /**
+         * Set the OAuth 2.0 Client ID.
+         *
+         * @param string $clientId
+         * @static 
+         */ 
+        public static function setClientId($clientId)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setClientId($clientId);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getClientId()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getClientId();
+        }
+                    /**
+         * Set the OAuth 2.0 Client Secret.
+         *
+         * @param string $clientSecret
+         * @static 
+         */ 
+        public static function setClientSecret($clientSecret)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setClientSecret($clientSecret);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getClientSecret()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getClientSecret();
+        }
+                    /**
+         * Set the OAuth 2.0 Redirect URI.
+         *
+         * @param string $redirectUri
+         * @static 
+         */ 
+        public static function setRedirectUri($redirectUri)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setRedirectUri($redirectUri);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRedirectUri()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getRedirectUri();
+        }
+                    /**
+         * Set OAuth 2.0 "state" parameter to achieve per-request customization.
+         *
+         * @see http://tools.ietf.org/html/draft-ietf-oauth-v2-22#section-3.1.2.2
+         * @param string $state
+         * @static 
+         */ 
+        public static function setState($state)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setState($state);
+        }
+                    /**
+         * 
+         *
+         * @param string $accessType Possible values for access_type include:
+         *  {@code "offline"} to request offline access from the user.
+         *  {@code "online"} to request online access from the user.
+         * @static 
+         */ 
+        public static function setAccessType($accessType)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setAccessType($accessType);
+        }
+                    /**
+         * 
+         *
+         * @param string $approvalPrompt Possible values for approval_prompt include:
+         *  {@code "force"} to force the approval UI to appear.
+         *  {@code "auto"} to request auto-approval when possible. (This is the default value)
+         * @static 
+         */ 
+        public static function setApprovalPrompt($approvalPrompt)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setApprovalPrompt($approvalPrompt);
+        }
+                    /**
+         * Set the login hint, email address or sub id.
+         *
+         * @param string $loginHint
+         * @static 
+         */ 
+        public static function setLoginHint($loginHint)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setLoginHint($loginHint);
+        }
+                    /**
+         * Set the application name, this is included in the User-Agent HTTP header.
+         *
+         * @param string $applicationName
+         * @static 
+         */ 
+        public static function setApplicationName($applicationName)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setApplicationName($applicationName);
+        }
+                    /**
+         * If 'plus.login' is included in the list of requested scopes, you can use
+         * this method to define types of app activities that your app will write.
+         * 
+         * You can find a list of available types here:
+         *
+         * @link https://developers.google.com/+/api/moment-types
+         * @param array $requestVisibleActions Array of app activity types
+         * @static 
+         */ 
+        public static function setRequestVisibleActions($requestVisibleActions)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setRequestVisibleActions($requestVisibleActions);
+        }
+                    /**
+         * Set the developer key to use, these are obtained through the API Console.
+         *
+         * @see http://code.google.com/apis/console-help/#generatingdevkeys
+         * @param string $developerKey
+         * @static 
+         */ 
+        public static function setDeveloperKey($developerKey)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setDeveloperKey($developerKey);
+        }
+                    /**
+         * Set the hd (hosted domain) parameter streamlines the login process for
+         * Google Apps hosted accounts. By including the domain of the user, you
+         * restrict sign-in to accounts at that domain.
+         *
+         * @param $hd string - the domain to use.
+         * @static 
+         */ 
+        public static function setHostedDomain($hd)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setHostedDomain($hd);
+        }
+                    /**
+         * Set the prompt hint. Valid values are none, consent and select_account.
+         * 
+         * If no value is specified and the user has not previously authorized
+         * access, then the user is shown a consent screen.
+         *
+         * @param $prompt string
+         *  {@code "none"} Do not display any authentication or consent screens. Must not be specified with other values.
+         *  {@code "consent"} Prompt the user for consent.
+         *  {@code "select_account"} Prompt the user to select an account.
+         * @static 
+         */ 
+        public static function setPrompt($prompt)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setPrompt($prompt);
+        }
+                    /**
+         * openid.realm is a parameter from the OpenID 2.0 protocol, not from OAuth
+         * 2.0. It is used in OpenID 2.0 requests to signify the URL-space for which
+         * an authentication request is valid.
+         *
+         * @param $realm string - the URL-space to use.
+         * @static 
+         */ 
+        public static function setOpenidRealm($realm)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setOpenidRealm($realm);
+        }
+                    /**
+         * If this is provided with the value true, and the authorization request is
+         * granted, the authorization will include any previous authorizations
+         * granted to this user/application combination for other scopes.
+         *
+         * @param $include boolean - the URL-space to use.
+         * @static 
+         */ 
+        public static function setIncludeGrantedScopes($include)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setIncludeGrantedScopes($include);
+        }
+                    /**
+         * sets function to be called when an access token is fetched
+         *
+         * @param callable $tokenCallback - function ($cacheKey, $accessToken)
+         * @static 
+         */ 
+        public static function setTokenCallback($tokenCallback)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setTokenCallback($tokenCallback);
+        }
+                    /**
+         * Revoke an OAuth2 access token or refresh token. This method will revoke the current access
+         * token, if a token isn't provided.
+         *
+         * @param string|array|null $token The token (access token or a refresh token) that should be revoked.
+         * @return boolean Returns True if the revocation was successful, otherwise False.
+         * @static 
+         */ 
+        public static function revokeToken($token = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->revokeToken($token);
+        }
+                    /**
+         * Verify an id_token. This method will verify the current id_token, if one
+         * isn't provided.
+         *
+         * @throws LogicException If no token was provided and no token was set using `setAccessToken`.
+         * @throws UnexpectedValueException If the token is not a valid JWT.
+         * @param string|null $idToken The token (id_token) that should be verified.
+         * @return array|false Returns the token payload as an array if the verification was
+         * successful, false otherwise.
+         * @static 
+         */ 
+        public static function verifyIdToken($idToken = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->verifyIdToken($idToken);
+        }
+                    /**
+         * Set the scopes to be requested. Must be called before createAuthUrl().
+         * 
+         * Will remove any previously configured scopes.
+         *
+         * @param string|array $scope_or_scopes, ie:
+         *    array(
+         *        'https://www.googleapis.com/auth/plus.login',
+         *        'https://www.googleapis.com/auth/moderator'
+         *    );
+         * @static 
+         */ 
+        public static function setScopes($scope_or_scopes)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setScopes($scope_or_scopes);
+        }
+                    /**
+         * This functions adds a scope to be requested as part of the OAuth2.0 flow.
+         * 
+         * Will append any scopes not previously requested to the scope parameter.
+         * A single string will be treated as a scope to request. An array of strings
+         * will each be appended.
+         *
+         * @param $scope_or_scopes string|array e.g. "profile"
+         * @static 
+         */ 
+        public static function addScope($scope_or_scopes)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->addScope($scope_or_scopes);
+        }
+                    /**
+         * Returns the list of scopes requested by the client
+         *
+         * @return array the list of scopes
+         * @static 
+         */ 
+        public static function getScopes()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getScopes();
+        }
+                    /**
+         * 
+         *
+         * @return string|null 
+         * @visible For Testing
+         * @static 
+         */ 
+        public static function prepareScopes()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->prepareScopes();
+        }
+                    /**
+         * Helper method to execute deferred HTTP requests.
+         *
+         * @param $request RequestInterface|\Google\Http\Batch
+         * @param string $expectedClass
+         * @throws \Google\Exception
+         * @return object of the type of the expected class or Psr\Http\Message\ResponseInterface.
+         * @static 
+         */ 
+        public static function execute($request, $expectedClass = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->execute($request, $expectedClass);
+        }
+                    /**
+         * Declare whether batch calls should be used. This may increase throughput
+         * by making multiple requests in one connection.
+         *
+         * @param boolean $useBatch True if the batch support should
+         * be enabled. Defaults to False.
+         * @static 
+         */ 
+        public static function setUseBatch($useBatch)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setUseBatch($useBatch);
+        }
+                    /**
+         * Are we running in Google AppEngine?
+         * return bool
+         *
+         * @static 
+         */ 
+        public static function isAppEngine()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->isAppEngine();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setConfig($name, $value)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setConfig($name, $value);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getConfig($name, $default = null)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getConfig($name, $default);
+        }
+                    /**
+         * For backwards compatibility
+         * alias for setAuthConfig
+         *
+         * @param string $file the configuration file
+         * @throws \Google\Exception
+         * @deprecated 
+         * @static 
+         */ 
+        public static function setAuthConfigFile($file)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setAuthConfigFile($file);
+        }
+                    /**
+         * Set the auth config from new or deprecated JSON config.
+         * 
+         * This structure should match the file downloaded from
+         * the "Download JSON" button on in the Google Developer
+         * Console.
+         *
+         * @param string|array $config the configuration json
+         * @throws \Google\Exception
+         * @static 
+         */ 
+        public static function setAuthConfig($config)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setAuthConfig($config);
+        }
+                    /**
+         * Use when the service account has been delegated domain wide access.
+         *
+         * @param string $subject an email address account to impersonate
+         * @static 
+         */ 
+        public static function setSubject($subject)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setSubject($subject);
+        }
+                    /**
+         * Declare whether making API calls should make the call immediately, or
+         * return a request which can be called with ->execute();
+         *
+         * @param boolean $defer True if calls should not be executed right away.
+         * @static 
+         */ 
+        public static function setDefer($defer)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setDefer($defer);
+        }
+                    /**
+         * Whether or not to return raw requests
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function shouldDefer()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->shouldDefer();
+        }
+                    /**
+         * 
+         *
+         * @return \Google\OAuth2 implementation
+         * @static 
+         */ 
+        public static function getOAuth2Service()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getOAuth2Service();
+        }
+                    /**
+         * Set the Cache object
+         *
+         * @param \Google\CacheItemPoolInterface $cache
+         * @static 
+         */ 
+        public static function setCache($cache)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setCache($cache);
+        }
+                    /**
+         * 
+         *
+         * @return \Google\CacheItemPoolInterface 
+         * @static 
+         */ 
+        public static function getCache()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getCache();
+        }
+                    /**
+         * 
+         *
+         * @param array $cacheConfig
+         * @static 
+         */ 
+        public static function setCacheConfig($cacheConfig)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setCacheConfig($cacheConfig);
+        }
+                    /**
+         * Set the Logger object
+         *
+         * @param \Google\LoggerInterface $logger
+         * @static 
+         */ 
+        public static function setLogger($logger)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setLogger($logger);
+        }
+                    /**
+         * 
+         *
+         * @return \Google\LoggerInterface 
+         * @static 
+         */ 
+        public static function getLogger()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getLogger();
+        }
+                    /**
+         * Set the Http Client object
+         *
+         * @param \Google\ClientInterface $http
+         * @static 
+         */ 
+        public static function setHttpClient($http)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setHttpClient($http);
+        }
+                    /**
+         * 
+         *
+         * @return \Google\ClientInterface 
+         * @static 
+         */ 
+        public static function getHttpClient()
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getHttpClient();
+        }
+                    /**
+         * Set the API format version.
+         * 
+         * `true` will use V2, which may return more useful error messages.
+         *
+         * @param bool $value
+         * @static 
+         */ 
+        public static function setApiFormatV2($value)
+        {            //Method inherited from \Google\Client         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setApiFormatV2($value);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function configConstruct($config)
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->configConstruct($config);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function config($string = null)
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->config($string);
+        }
+                    /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getConfigs()
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->getConfigs();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setAdditionalScopes($scopes)
+        {            //Method inherited from \Dacastro4\LaravelGmail\GmailConnection         
+                        /** @var \Dacastro4\LaravelGmail\LaravelGmailClass $instance */
+                        return $instance->setAdditionalScopes($scopes);
+        }
+         
+    }
+     
+}
+
     namespace Facade\Ignition\Facades { 
             /**
      * Class Flare.
@@ -19113,6 +20059,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Debugbar extends \Barryvdh\Debugbar\Facade {}
+            class LaravelGmail extends \Dacastro4\LaravelGmail\Facade\LaravelGmail {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
             class Socialite extends \Laravel\Socialite\Facades\Socialite {}
      
