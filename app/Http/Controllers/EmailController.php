@@ -49,20 +49,29 @@ class EmailController extends Controller
      */
     public function store(Request $request): Response
     {
-        $rules = ['address' =>'required',
-            'subject' => 'required|min:3', 'message' => 'required|min:3'];
+        $rules = [
+            'address' => 'required|array',
+            'address.*' => 'email:rfc,dns',
+            'cc' => 'array',
+            'cc.*' => 'email:rfc,dns',
+            'bcc' => 'array',
+            'bcc.*' => 'email:rfc:dns',
+            'subject' => 'required|min:3',
+            'message' => 'required|min:3'
+        ];
         $validation = Validator::make($request->all(), $rules);
         if ($validation->fails()) {
-            return response($validation->errors(), 400);
+            return response($validation->errors()->toArray(), 400);
         }
         $mail = new Mail();
         $mail->setToken($request->user()->socialData()->where('social_type', 'google')->value('access_token'));
         $mail->to($request->get('address'));
+        $mail->cc($request->get('cc', null));
+        $mail->bcc($request->get('bcc', null));
         $mail->from($request->user()->email);
         $mail->subject($request->get('subject'));
         $mail->message($request->get('message'));
         $mail->send();
-        //TODO: handle cc, bcc
         return response("Mail sent", 201);
     }
 
