@@ -84,28 +84,11 @@ class EmailController extends Controller
      */
     public function show(Request $request, string $id): Response
     {
-        //TODO change this for GMAIL apiClient stuff get email object functionality
-        $user = $request->user();
-        $socialData = $user->socialData->where('social_type', 'google')->first();
-        $handle = curl_init();
-        $url = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages/{$id}";
-        $headers = [
-            'Accept: application/json',
-            'Content-Type: application/json',
-            "Authorization: Bearer {$socialData->access_token}",
-        ];
-        curl_setopt_array(
-            $handle,
-            [
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_HTTPHEADER => $headers,
-            ]
-        );
-        $data = curl_exec($handle);
-        curl_close($handle);
-        return response($data, 200);
+        \LaravelGmail::setToken($request->user()->socialData()->where('social_type', 'google')->value('access_token'));
+        $mail = \LaravelGmail::message()->get($id);
+        return response($mail->getPlainTextBody(), 200);
     }
+
 
     /**
      * Update the specified resource in storage.
