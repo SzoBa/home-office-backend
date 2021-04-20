@@ -86,7 +86,8 @@ class EmailController extends Controller
     {
         \LaravelGmail::setToken($request->user()->socialData()->where('social_type', 'google')->value('access_token'));
         $mail = \LaravelGmail::message()->get($id);
-        return response($mail->getPlainTextBody(), 200);
+//        return response($mail->getPlainTextBody(), 200);
+        return response($mail->getHtmlBody(), 200);
     }
 
 
