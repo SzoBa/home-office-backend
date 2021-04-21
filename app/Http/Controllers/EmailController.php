@@ -68,7 +68,7 @@ class EmailController extends Controller
         $mail->to($request->get('address'));
         $mail->cc($request->get('cc', null));
         $mail->bcc($request->get('bcc', null));
-        $mail->from($request->user()->email);
+        $mail->from($request->user()->email, $request->user()->name);
         $mail->subject($request->get('subject'));
         $mail->message($request->get('message'));
         $mail->send();
