@@ -21,6 +21,7 @@ return [
     'gmailReadOnly' => env('GMAIL_READ_ONLY_URL'),
     'gmailLabel' => env('GMAIL_LABEL_URL'),
     'gmailSend' => env('GMAIL_SEND_URL'),
+    'gmailModify' => env('GMAIL_MODIFY_URL'),
     'gmailApiUrl' => env('GMAIL_API_URL'),
     'accessType' => env('GMAIL_ACCESS_TYPE'),
 
