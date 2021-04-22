@@ -95,7 +95,7 @@ class EmailController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -107,15 +107,35 @@ class EmailController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Request $request
-     * @param int $id
+     * @param $id
      * @return Response
      */
-    public function destroy(Request $request, int $id): Response
+    public function destroy(Request $request, string $id): Response
     {
-        \LaravelGmail::setToken($request->user()->socialData()->where('social_type', 'google')->value('access_token'));
-        $mail = \LaravelGmail::message()->get($id);
-        $mail->sendToTrash();
-        return response('Mail deleted', 204);
+        $user = $request->user();
+        $socialData = $user->socialData->where('social_type', 'google')->first();
+        $handle = curl_init();
+        $url = config("app.gmailApiUrl") . "/{$socialData->social_id}/messages/{$id}/trash";
+        $headers = [
+            'Accept: application/json',
+            'Content-Type: application/json',
+            "Authorization: Bearer {$socialData->access_token}",
+        ];
+        curl_setopt_array(
+            $handle,
+            [
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_HTTPHEADER => $headers,
+                CURLOPT_POST => 1,
+            ]
+        );
+        $data = curl_exec($handle);
+        curl_close($handle);
+        if (isset($data->error)) {
+            return response('An error occurred', 400);
+        }
+        return response('Mail deleted', 200);
     }
 
 }
