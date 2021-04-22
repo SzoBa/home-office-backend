@@ -12,7 +12,7 @@ class GoogleController extends Controller
 {
     public function loginUrl()
     {
-        $scopes = [config('app.gmailReadOnly'), config('app.gmailLabel'), config('app.gmailSend')];
+        $scopes = [config('app.gmailReadOnly'), config('app.gmailLabel'), config('app.gmailSend'), config('app.gmailModify')];
         $parameters = ['access_type' => config('app.accessType'),
             'prompt' => 'select_account'];
         return response(
