@@ -106,12 +106,16 @@ class EmailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, int $id): Response
     {
-        //
+        \LaravelGmail::setToken($request->user()->socialData()->where('social_type', 'google')->value('access_token'));
+        $mail = \LaravelGmail::message()->get($id);
+        $mail->sendToTrash();
+        return response('Mail deleted', 204);
     }
 
 }
