@@ -16,6 +16,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', 'Auth\LoginController@login');
     Route::get('/local_weather', 'WeatherController@getWeather');
     Route::get('/forecast', 'ForecastController@index');
+    Route::get('/currency', 'CurrencyController@index');
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
