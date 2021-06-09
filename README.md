@@ -2,6 +2,8 @@
 #### Author:
 Balázs Szolcsánszki
 
+#### Front-end repository link:
+https://github.com/SzoBa/home-office-frontend.git
 #### Used Technologies (backend)
 - PHP 7.4
 - Laravel 8 (Socialite, Sanctum)
